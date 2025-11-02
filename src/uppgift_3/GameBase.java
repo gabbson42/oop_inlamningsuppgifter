@@ -2,6 +2,9 @@ package uppgift_3;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class GameBase extends JFrame {
 
@@ -14,4 +17,35 @@ public class GameBase extends JFrame {
     JButton autoWin = new JButton("Auto Win");
 
     JLabel winText = new JLabel(" ");
+
+    public GameBase(){
+
+        this.add(base);
+        base.add(gamePanel,BorderLayout.CENTER);
+        base.add(sidebar, BorderLayout.EAST);
+        base.add(bottomPanel, BorderLayout.SOUTH);
+
+        sidebar.add(newGame);
+        sidebar.add(autoWin);
+
+        List<JButton> buttons = new ArrayList<>();
+        for(int i = 1; i <= 15; i++){
+            buttons.add(new JButton(String.valueOf(i)));
+        }
+        buttons.add(new JButton(""));
+
+        Collections.shuffle(buttons);
+
+        for(JButton button : buttons ){
+            gamePanel.add(button);
+        }
+
+        bottomPanel.add(winText);
+
+        setSize(500,400);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+    }
 }

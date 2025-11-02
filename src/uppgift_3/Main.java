@@ -4,5 +4,7 @@ public class Main {
 
     static void main() {
 
+        GameBase run = new GameBase();
+
     }
 }
