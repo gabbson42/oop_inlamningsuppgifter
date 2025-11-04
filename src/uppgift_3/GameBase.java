@@ -2,11 +2,10 @@ package uppgift_3;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class GameBase extends JFrame {
+
+    GameLogic logic = new GameLogic();
 
     JPanel base = new JPanel(new BorderLayout());
     JPanel gamePanel = new JPanel(new GridLayout(4,4));
@@ -28,19 +27,20 @@ public class GameBase extends JFrame {
         sidebar.add(newGame);
         sidebar.add(autoWin);
 
-        List<JButton> buttons = new ArrayList<>();
-        for(int i = 1; i <= 15; i++){
-            buttons.add(new JButton(String.valueOf(i)));
-        }
-        buttons.add(new JButton(""));
-
-        Collections.shuffle(buttons);
-
-        for(JButton button : buttons ){
-            gamePanel.add(button);
-        }
+        logic.newGame(gamePanel);
 
         bottomPanel.add(winText);
+
+        newGame.addActionListener(e -> {
+            logic.newGame(gamePanel);
+            revalidate();
+            repaint();
+        });
+        autoWin.addActionListener(e -> {
+            logic.autoWin(gamePanel);
+            revalidate();
+            repaint();
+        });
 
         setSize(500,400);
         setVisible(true);
