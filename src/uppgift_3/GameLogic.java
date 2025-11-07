@@ -16,14 +16,17 @@ public class GameLogic extends JFrame implements ActionListener {
 
 
     private void createNumbersAndButtons(){
-        for(int i = 0; i <= 15; i++){
+        for(int i = 0; i <= rows * cols - 1; i++){
+            JButton button = new JButton();
             this.numbers.add(i);
-            this.buttons.add(new JButton());
+            this.buttons.add(button);
+            button.addActionListener(this);
+            button.setActionCommand(String.valueOf(i));
         }
     }
 
     private void pasteNumbers(){
-        for(int i = 0; i <= 15; i++){
+        for(int i = 0; i <= rows * cols - 1; i++){
             int number = numbers.get(i);
             JButton button = buttons.get(i);
             if(number != 0) {
@@ -46,20 +49,50 @@ public class GameLogic extends JFrame implements ActionListener {
         if(numbers.isEmpty() || buttons.isEmpty()) {
             createNumbersAndButtons();
         }
-        Collections.shuffle(numbers);
-        pasteNumbers();
         if(!panel.contains(rows,cols)) {
             pasteButtons(panel);
         }
+        Collections.shuffle(numbers);
+        pasteNumbers();
+
     }
 
     public void autoWin(JPanel panel){
         Collections.sort(numbers);
+        Collections.rotate(numbers, -1);
         pasteNumbers();
+    }
+
+    public void swapNumbers(int num1, int num2){
+        Collections.swap(numbers,num1, num2);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        String command = e.getActionCommand();
+        int commandIndex = Integer.parseInt(command);
+        int indexOfZero = numbers.indexOf(0);
+
+        boolean swapped = false;
+
+        if(commandIndex == indexOfZero - 1 && !(indexOfZero % cols == 0)){
+            swapped = true;
+        }
+        if(commandIndex == indexOfZero + 1 && !(indexOfZero % cols == cols - 1)){
+            swapped = true;
+        }
+        if(commandIndex == indexOfZero + cols && !(indexOfZero >= cols * (rows - 1))){
+            swapped = true;
+        }
+        if(commandIndex == indexOfZero - cols && !(indexOfZero < cols)){
+            swapped = true;
+        }
+        if(swapped){
+            swapNumbers(commandIndex, indexOfZero);
+            pasteNumbers();
+        }
+
 
     }
 }
