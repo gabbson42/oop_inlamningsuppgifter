@@ -59,7 +59,7 @@ public class GameLogic extends JFrame implements ActionListener {
         resetMoveCounter();
     }
 
-    public void autoWin(JPanel panel){
+    public void autoWin(){
         Collections.sort(numbers);
         Collections.rotate(numbers, -1);
         pasteNumbers();

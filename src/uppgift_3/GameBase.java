@@ -48,7 +48,7 @@ public class GameBase extends JFrame {
             repaint();
         });
         autoWin.addActionListener(e -> {
-            logic.autoWin(gamePanel);
+            logic.autoWin();
             revalidate();
             repaint();
         });
