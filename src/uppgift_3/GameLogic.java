@@ -67,6 +67,22 @@ public class GameLogic extends JFrame implements ActionListener {
         Collections.swap(numbers,num1, num2);
     }
 
+    public void winCondition(){
+        boolean isSorted = false;
+        for (int i = 0; i < numbers.size()-1; i++) {
+            if(numbers.get(i) == i+1){
+                isSorted = true;
+            }
+            else{
+                isSorted = false;
+                break;
+            }
+        }
+        if(isSorted && numbers.getLast() == 0){
+            JOptionPane.showMessageDialog(null,"Congratulations, you win!");
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -92,7 +108,6 @@ public class GameLogic extends JFrame implements ActionListener {
             swapNumbers(commandIndex, indexOfZero);
             pasteNumbers();
         }
-
-
+        winCondition();
     }
 }
