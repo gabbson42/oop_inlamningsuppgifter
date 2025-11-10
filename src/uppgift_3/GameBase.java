@@ -10,7 +10,7 @@ public class GameBase extends JFrame {
     JPanel base = new JPanel(new BorderLayout());
     JPanel gamePanel = new JPanel(new GridLayout(4,4));
     JPanel sidebar = new JPanel(new GridLayout(3,1));
-    JLabel moveCounter = new JLabel("Move Counter: ");
+    public static JLabel moveCounter = new JLabel();
 
     JButton newGame = new JButton("New Game");
     JButton autoWin = new JButton("Auto Win");
@@ -62,5 +62,9 @@ public class GameBase extends JFrame {
         button.setBackground(Color.PINK);
         button.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         button.setPreferredSize(new Dimension(80, 80));
+    }
+
+    static void main() {
+        GameBase run = new GameBase();
     }
 }

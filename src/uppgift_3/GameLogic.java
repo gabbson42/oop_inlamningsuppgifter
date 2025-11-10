@@ -13,6 +13,7 @@ public class GameLogic extends JFrame implements ActionListener {
     private List<Integer> numbers = new ArrayList<>();
     private int rows = 4;
     private int cols = 4;
+    private int numberOfMoves = 0;
 
 
     private void createNumbersAndButtons(){
@@ -55,13 +56,14 @@ public class GameLogic extends JFrame implements ActionListener {
         }
         Collections.shuffle(numbers);
         pasteNumbers();
-
+        resetMoveCounter();
     }
 
     public void autoWin(JPanel panel){
         Collections.sort(numbers);
         Collections.rotate(numbers, -1);
         pasteNumbers();
+        resetMoveCounter();
     }
 
     private void winCondition(){
@@ -78,6 +80,11 @@ public class GameLogic extends JFrame implements ActionListener {
         if(isSorted && numbers.getLast() == 0){
             JOptionPane.showMessageDialog(null,"Congratulations, you win!");
         }
+    }
+
+    private void resetMoveCounter(){
+        this.numberOfMoves = 0;
+        GameBase.moveCounter.setText("<html><div style=\"text-align:center;\">Move Counter:<br> " + this.numberOfMoves + "</div></html>");
     }
 
     @Override
@@ -104,7 +111,9 @@ public class GameLogic extends JFrame implements ActionListener {
         if(swapped){
             Collections.swap(numbers, commandIndex, indexOfZero);
             pasteNumbers();
+            this.numberOfMoves+= 1;
         }
+        GameBase.moveCounter.setText("<html><div style=\"text-align:center;\">Move Counter:<br> " + this.numberOfMoves + "</div></html>");
         winCondition();
     }
 }
