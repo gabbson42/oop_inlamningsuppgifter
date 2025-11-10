@@ -35,7 +35,7 @@ public class GameBase extends JFrame {
         newGame.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         autoWin.setBackground(Color.RED);
         autoWin.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        moveCounter.setForeground(Color.WHITE);
+        moveCounter.setForeground(Color.CYAN);
 
         logic.newGame(gamePanel);
 
