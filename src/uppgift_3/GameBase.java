@@ -10,7 +10,7 @@ public class GameBase extends JFrame {
     JPanel base = new JPanel(new BorderLayout());
     JPanel gamePanel = new JPanel(new GridLayout(4,4));
     JPanel sidebar = new JPanel(new GridLayout(3,1));
-    public static JLabel moveCounter = new JLabel();
+    JLabel moveCounter = new JLabel();
 
     JButton newGame = new JButton("New Game");
     JButton autoWin = new JButton("Auto Win");
@@ -40,10 +40,10 @@ public class GameBase extends JFrame {
         autoWin.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         moveCounter.setForeground(Color.CYAN);
 
-        logic.newGame(gamePanel);
+        logic.newGame(gamePanel, moveCounter);
 
         newGame.addActionListener(e -> {
-            logic.newGame(gamePanel);
+            logic.newGame(gamePanel, moveCounter);
             revalidate();
             repaint();
         });

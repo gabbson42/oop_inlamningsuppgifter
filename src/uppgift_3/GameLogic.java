@@ -14,6 +14,7 @@ public class GameLogic extends JFrame implements ActionListener {
     private int rows = 4;
     private int cols = 4;
     private int numberOfMoves = 0;
+    private JLabel moveCounterLabel;
 
 
     private void createNumbersAndButtons(){
@@ -47,7 +48,9 @@ public class GameLogic extends JFrame implements ActionListener {
         }
     }
 
-    public void newGame(JPanel panel){
+    public void newGame(JPanel panel, JLabel counterLabel){
+        this.moveCounterLabel = counterLabel;
+
         if(numbers.isEmpty() || buttons.isEmpty()) {
             createNumbersAndButtons();
         }
@@ -84,7 +87,7 @@ public class GameLogic extends JFrame implements ActionListener {
     }
 
     private void setMoveCounter(){
-        GameBase.moveCounter.setText("<html><div style=\"text-align:center;\">Move Counter:<br> " + this.numberOfMoves + "</div></html>");
+        this.moveCounterLabel.setText("<html><div style=\"text-align:center;\">Move Counter:<br> " + this.numberOfMoves + "</div></html>");
     }
 
     @Override
