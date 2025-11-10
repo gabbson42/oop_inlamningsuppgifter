@@ -10,26 +10,34 @@ public class GameBase extends JFrame {
     JPanel base = new JPanel(new BorderLayout());
     JPanel gamePanel = new JPanel(new GridLayout(4,4));
     JPanel sidebar = new JPanel(new GridLayout(3,1));
-    JPanel bottomPanel = new JPanel(new FlowLayout());
+    JLabel moveCounter = new JLabel("Move Counter: ");
 
     JButton newGame = new JButton("New Game");
     JButton autoWin = new JButton("Auto Win");
-
-    JLabel winText = new JLabel(" ");
+    Font textFont = new Font("Arial", Font.BOLD, 15);
 
     public GameBase(){
 
+        super.setTitle("Gabriels 15-Game!");
         this.add(base);
         base.add(gamePanel,BorderLayout.CENTER);
         base.add(sidebar, BorderLayout.EAST);
-        base.add(bottomPanel, BorderLayout.SOUTH);
+        gamePanel.setBackground(Color.BLACK);
+        sidebar.setBackground(Color.BLACK);
 
         sidebar.add(newGame);
         sidebar.add(autoWin);
+        sidebar.add(moveCounter);
+
+        newGame.setFont(textFont);
+        autoWin.setFont(textFont);
+        newGame.setBackground(Color.GREEN);
+        newGame.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        autoWin.setBackground(Color.RED);
+        autoWin.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        moveCounter.setForeground(Color.WHITE);
 
         logic.newGame(gamePanel);
-
-        bottomPanel.add(winText);
 
         newGame.addActionListener(e -> {
             logic.newGame(gamePanel);
@@ -47,5 +55,12 @@ public class GameBase extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+    }
+
+    public static void buttonDesign(JButton button){
+        button.setFont(new Font("Arial", Font.BOLD, 40));
+        button.setBackground(Color.PINK);
+        button.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        button.setPreferredSize(new Dimension(80, 80));
     }
 }

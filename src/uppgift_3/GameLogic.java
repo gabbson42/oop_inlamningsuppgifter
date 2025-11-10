@@ -18,6 +18,7 @@ public class GameLogic extends JFrame implements ActionListener {
     private void createNumbersAndButtons(){
         for(int i = 0; i <= rows * cols - 1; i++){
             JButton button = new JButton();
+            GameBase.buttonDesign(button);
             this.numbers.add(i);
             this.buttons.add(button);
             button.addActionListener(this);
