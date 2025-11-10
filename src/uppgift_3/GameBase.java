@@ -16,9 +16,12 @@ public class GameBase extends JFrame {
     JButton autoWin = new JButton("Auto Win");
     Font textFont = new Font("Arial", Font.BOLD, 15);
 
+    ImageIcon img = new ImageIcon("src/uppgift_3/xv_logo.jpg");
+
     public GameBase(){
 
         super.setTitle("Gabriels 15-Game!");
+        super.setIconImage(img.getImage());
         this.add(base);
         base.add(gamePanel,BorderLayout.CENTER);
         base.add(sidebar, BorderLayout.EAST);
