@@ -56,14 +56,14 @@ public class GameLogic extends JFrame implements ActionListener {
         }
         Collections.shuffle(numbers);
         pasteNumbers();
-        resetMoveCounter();
+        this.numberOfMoves = 0;
+        setMoveCounter();
     }
 
     public void autoWin(){
         Collections.sort(numbers);
         Collections.rotate(numbers, -1);
         pasteNumbers();
-        resetMoveCounter();
     }
 
     private void winCondition(){
@@ -78,12 +78,12 @@ public class GameLogic extends JFrame implements ActionListener {
             }
         }
         if(isSorted && numbers.getLast() == 0){
-            JOptionPane.showMessageDialog(null,"Congratulations, you win!");
+            JOptionPane.showMessageDialog(null,"Congratulations, you win!", "Victory!",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
-    private void resetMoveCounter(){
-        this.numberOfMoves = 0;
+    private void setMoveCounter(){
         GameBase.moveCounter.setText("<html><div style=\"text-align:center;\">Move Counter:<br> " + this.numberOfMoves + "</div></html>");
     }
 
@@ -113,7 +113,7 @@ public class GameLogic extends JFrame implements ActionListener {
             pasteNumbers();
             this.numberOfMoves+= 1;
         }
-        GameBase.moveCounter.setText("<html><div style=\"text-align:center;\">Move Counter:<br> " + this.numberOfMoves + "</div></html>");
+        setMoveCounter();
         winCondition();
     }
 }
