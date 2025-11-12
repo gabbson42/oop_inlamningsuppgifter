@@ -60,13 +60,6 @@ public class GameBase extends JFrame {
 
     }
 
-    public static void buttonDesign(JButton button){
-        button.setFont(new Font("Arial", Font.BOLD, 40));
-        button.setBackground(Color.PINK);
-        button.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        button.setPreferredSize(new Dimension(80, 80));
-    }
-
     static void main() {
         GameBase run = new GameBase();
     }

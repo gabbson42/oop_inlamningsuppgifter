@@ -1,6 +1,7 @@
 package uppgift_3;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class GameLogic extends JFrame implements ActionListener {
     private void createNumbersAndButtons(){
         for(int i = 0; i <= rows * cols - 1; i++){
             JButton button = new JButton();
-            GameBase.buttonDesign(button);
+            buttonDesign(button);
             this.numbers.add(i);
             this.buttons.add(button);
             button.addActionListener(this);
@@ -88,6 +89,13 @@ public class GameLogic extends JFrame implements ActionListener {
 
     private void setMoveCounter(){
         this.moveCounterLabel.setText("<html><div style=\"text-align:center;\">Move Counter:<br> " + this.numberOfMoves + "</div></html>");
+    }
+
+    public void buttonDesign(JButton button){
+        button.setFont(new Font("Arial", Font.BOLD, 40));
+        button.setBackground(Color.PINK);
+        button.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        button.setPreferredSize(new Dimension(80, 80));
     }
 
     @Override
